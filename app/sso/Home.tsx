@@ -15,6 +15,8 @@ const HomePage = ({route, navigation}) => {
   };
 
 
+  // const user = route.params;
+  // console.log("----------------user",user)
 //   const userData =JSON.stringify(user)
 //   console.log("----------------userData",userData)
 return (

@@ -4,6 +4,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/userSlice';
+// import 
+// import axios from "axios";
 
 const Signin = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -48,6 +50,40 @@ const Signin = ({navigation}) => {
       // Handle login error
       console.error("Login error", error);
     });
+  
+    // try {
+    //   const response = await fetch(`https://accountsapi.seebiz.cloud/login`, {
+    //     method: 'POST',
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "application/json",
+    //     },
+    //     body: JSON.stringify({ email, password })
+    //   });
+  
+    //   if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    //   }
+  
+    //   const responseData = await response.json();
+    //   console.log("-------------=======response", responseData);
+    //   if(responseData.code == 201 || responseData.code == "201"){
+    //     setErrorMessage(responseData.message);
+    //     return;
+    //   } else if(responseData.code == 203 || responseData.code == "203"){
+    //     setErrorMessage(responseData.message);
+    //     return;
+    //   }else if(responseData.code == 200 || responseData.code == "200"){
+        
+    //     navigation.navigate("HomePage",{
+    //       user: responseData.user,
+    //     })
+    //     // setErrorMessage(responseData.message);
+    //     // return;
+    //   }
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
   };
   
 
