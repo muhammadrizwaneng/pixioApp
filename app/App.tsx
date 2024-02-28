@@ -47,7 +47,7 @@ function App() {
           <Stack.Screen
             name="Home"
             component={Signin}
-            options={{ title: 'Overview' }}
+            options={{ title: 'Sign In' }}
           />
           <Stack.Screen name="Signin" component={Signin} />
           {/* <Stack.Screen name="HomePage" component={Home} /> */}
