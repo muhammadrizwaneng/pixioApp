@@ -17,13 +17,9 @@ const Tab = createBottomTabNavigator();
 const AuthenticatedDrawerScreens = () => {
   return (
     <Drawer.Navigator initialRouteName='Profile'>
-      <Stack.Screen
-            name="User Profile"
-            component={Profile}
-            options={{ title: 'Overview' }}
-          />
       <Drawer.Screen name='Home' component={Home} />
       <Drawer.Screen name='Profile' component={Profile} />
+      <Drawer.Screen name="Tab" component={AuthenticatedTabScreens} />
     </Drawer.Navigator>
   );
 }
