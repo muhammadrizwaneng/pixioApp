@@ -26,7 +26,7 @@ const AuthenticatedDrawerScreens = () => {
 
 const AuthenticatedTabScreens = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName='Activity'>
       <Tab.Screen name='Phone Number' component={PhoneNumber} />
       <Tab.Screen name='Activity' component={Activity} />
     </Tab.Navigator>

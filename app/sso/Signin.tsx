@@ -43,7 +43,7 @@ const Signin = ({navigation}) => {
       // Handle successful login response
       console.log("Login successful", result);
       if(result.data.code == 200 || result.data.code == "200"){
-        navigation.navigate("HomePage")
+        navigation.navigate("Home")
       }
     })
     .catch((error) => {
