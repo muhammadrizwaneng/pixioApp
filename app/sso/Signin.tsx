@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, GestureResponderEvent } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-// import 
-// import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSlice';
 
 const Signin = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch()
 
   const onChangeEmail = (text) => {
     setErrorMessage("")
@@ -32,40 +33,21 @@ const Signin = ({navigation}) => {
     }
   
     console.log(email, password);
-  
-    try {
-      const response = await fetch(`https://accountsapi.seebiz.cloud/login`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ email, password })
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    const payload = {email, password}
+
+    dispatch(login(payload))
+    .unwrap()
+    .then((result) => {
+      // Handle successful login response
+      console.log("Login successful", result);
+      if(result.data.code == 200 || result.data.code == "200"){
+        navigation.navigate("HomePage")
       }
-  
-      const responseData = await response.json();
-      console.log("-------------=======response", responseData);
-      if(responseData.code == 201 || responseData.code == "201"){
-        setErrorMessage(responseData.message);
-        return;
-      } else if(responseData.code == 203 || responseData.code == "203"){
-        setErrorMessage(responseData.message);
-        return;
-      }else if(responseData.code == 200 || responseData.code == "200"){
-        
-        navigation.navigate("HomePage",{
-          user: responseData.user,
-        })
-        // setErrorMessage(responseData.message);
-        // return;
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    })
+    .catch((error) => {
+      // Handle login error
+      console.error("Login error", error);
+    });
   };
   
 
