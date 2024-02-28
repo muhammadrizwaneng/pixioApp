@@ -1,9 +1,13 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import { useSelector } from "react-redux";
 
 const HomePage = ({route, navigation}) => {
-  const user = route.params;
+  const selectUserInfo = (state: any) => state?.user;
+  const user = useSelector(selectUserInfo);
   console.log("----------------user",user)
+  // const user = route.params;
+  // console.log("----------------user",user)
 //   const userData =JSON.stringify(user)
 //   console.log("----------------userData",userData)
 return (
