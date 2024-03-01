@@ -9,6 +9,7 @@ import Home from './sso/Home';
 import Profile from './sso/Profile';
 import PhoneNumber from './sso/PhoneNumber';
 import Activity from './sso/Activity';
+import MobileDesign from './mobileDesign/MobileDesign';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -16,9 +17,13 @@ const Tab = createBottomTabNavigator();
 
 const AuthenticatedDrawerScreens = () => {
   return (
-    <Drawer.Navigator initialRouteName='Profile'>
+    <Drawer.Navigator initialRouteName='Template'>
       <Drawer.Screen name='Home' component={Home} />
       <Drawer.Screen name='Profile' component={Profile} />
+      <Drawer.Screen 
+        name='Template' 
+        component={MobileDesign}
+      />
       <Drawer.Screen name="Tab" component={AuthenticatedTabScreens} />
     </Drawer.Navigator>
   );
