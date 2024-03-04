@@ -32,7 +32,7 @@ const EcommerceSmacookHeader = () => {
           <Text style={styles.outerPot}>Inner Pot 9L</Text>
         </View>
       </View>
-      <View style={styles.container}>
+      <View style={styles.btncontainer}>
         <View style={styles.AddToCartBorder}>
           
           <Text style={styles.AddToCart}> <Icon name="shopping-cart" size={17} color="white"/>  Add To Cart</Text>
@@ -49,6 +49,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
   },
+  btncontainer: {
+    flexDirection: "row",
+    justifyContent:"space-between"
+  },
   textHeading: {
     marginLeft: 10,
   },
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     color: "#2A69E6",
     marginLeft: 10,
     fontWeight: "bold",
-    textDecorationLine: "underline line-through",
+    textDecorationLine: "underline",
     textDecorationStyle: "solid",
     textDecorationColor: "#D4E1FA",
   },
@@ -91,12 +95,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   InnerPot: {
-    marginLeft: 10,
+    // marginLeft: 10,
     textAlign: "center",
     width: 100,
     height: 30,
     color: "#F79E84",
     paddingVertical: 5,
+    fontWeight:"bold",
+    fontSize:12
   },
   textBorder: {
     borderColor: "#F79E84",
@@ -105,12 +111,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   outerPot: {
-    marginLeft: 10,
+    // marginLeft: 10,
     textAlign: "center",
     width: 100,
     height: 30,
     color: "black",
     paddingVertical: 5,
+    fontWeight:"bold",
+    fontSize:12
   },
   outerPottextBorder: {
     borderColor: "#E5E5E5",
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   AddToCart: {
-    marginLeft: 10,
+    marginLeft:5,
     textAlign: "center",
     width: 150,
     height: 40,
