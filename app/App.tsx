@@ -12,6 +12,7 @@ import Activity from './sso/Activity';
 import MobileDesign from './mobileDesign/MobileDesign';
 import EcommerceDesign from './mobileDesign/EcommerceDesign';
 import EcommerceDetailScreen from './mobileDesign/EcommerceDetailScreen'
+import EcommerceCategories from './mobileDesign/EcommerceCategories';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -36,6 +37,8 @@ const AuthenticatedTabScreens = () => {
       <Tab.Screen name='Phone Number' component={PhoneNumber} />
       <Tab.Screen name='Activity' component={Activity} />
       <Tab.Screen name='Fryer Details' component={EcommerceDetailScreen} />
+      <Tab.Screen name='Categories' component={EcommerceCategories} />
+
     </Tab.Navigator>
   );
 }
