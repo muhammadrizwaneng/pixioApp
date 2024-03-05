@@ -1,182 +1,176 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button, GestureResponderEvent } from 'react-native';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { login } from '../features/userSlice';
-// import 
-// import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Image, ScrollView, Dimensions, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
+import { Text } from 'react-native';
+import  Icon from 'react-native-vector-icons/FontAwesome';
+import { Link } from '@react-navigation/native';
 
 const Signin = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const dispatch = useDispatch()
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [text, onChangeText] = React.useState('');
+  const [number, onChangeNumber] = React.useState('');
 
-  const onChangeEmail = (text) => {
-    setErrorMessage("")
-    setEmail(text);
-  };
-  const onChangePassword = (newText) => {
-    setErrorMessage("")
-    setPassword(newText);
-  };
-  const handleSubmit = async (values) => {
-    setErrorMessage("")
-    const { email, password } = values;
-    console.log("---------------------", values);
-    
-    if (!email) {
-      setErrorMessage("Please enter email");
-      return;
-    } else if (!password) {
-      setErrorMessage("Please enter Password");
-      return;
-    }
-  
-    console.log(email, password);
-    const payload = {email, password}
-
-    dispatch(login(payload))
-    .unwrap()
-    .then((result) => {
-      // Handle successful login response
-      console.log("Login successful", result);
-      if(result.data.code == 200 || result.data.code == "200"){
-        navigation.navigate("Home")
-      }
-    })
-    .catch((error) => {
-      // Handle login error
-      console.error("Login error", error);
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+      headerTitle: 'Mobile App Design',
+      // headerRight: () => setIconsOnHeader(),
     });
-  
-    // try {
-    //   const response = await fetch(`https://accountsapi.seebiz.cloud/login`, {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //     },
-    //     body: JSON.stringify({ email, password })
-    //   });
-  
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok');
-    //   }
-  
-    //   const responseData = await response.json();
-    //   console.log("-------------=======response", responseData);
-    //   if(responseData.code == 201 || responseData.code == "201"){
-    //     setErrorMessage(responseData.message);
-    //     return;
-    //   } else if(responseData.code == 203 || responseData.code == "203"){
-    //     setErrorMessage(responseData.message);
-    //     return;
-    //   }else if(responseData.code == 200 || responseData.code == "200"){
-        
-    //     navigation.navigate("HomePage",{
-    //       user: responseData.user,
-    //     })
-    //     // setErrorMessage(responseData.message);
-    //     // return;
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
-  };
-  
+  }, [navigation]);
 
   return (
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      validationSchema={Yup.object().shape({
-        email: Yup.string().email('Invalid email').required('Email is required'),
-        password: Yup.string().required('Password is required'),
-      })}
-      onSubmit={handleSubmit}
-    >
-      {(formikProps) => (
-        <View style={styles.container}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Email</Text>
-            <TextInput
-              value={formikProps.values.email}
-              placeholder='Type Here...'
-              onChangeText={formikProps.handleChange('email')}
-              onBlur={formikProps.handleBlur('email')}
-              style={styles.input}
+    <View style={styles.container}>
+      <View>
+        <Image
+              source={require("../../images/pretty-young.jpeg")}
+              style={styles.flashImage}
             />
-            <Text style={styles.errorText}>
-            {formikProps.touched.email && formikProps.errors.email ? (
-              <>{formikProps.errors.email}</>
-            ) : null}
-          </Text>
+      </View>
+      <View style={styles.texts}>
+        <Text style={styles.signIn}>Sign In To Your Account</Text>
+        <Text style={styles.welcomeText}>Welcome Back You've Been Missed!</Text>
+      </View>
+      <SafeAreaView>
+        <Text style={styles.passwordText}>Email Address</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeText}
+          value={text}
+        />
+        <Text style={styles.passwordText}>Password</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeNumber}
+          value={number}
+        />
+    </SafeAreaView>
+    <View>
+    {/* <Link to={{ screen: 'Profile', params: { id: 'jane' } }}>
+      Go to Jane's profile
+    </Link> */}
+      <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+    </View>
+    <TouchableOpacity
+          style={styles.getStartedButton}
+          onPress={() => navigation.navigate('Login')}
+        >
+          <View style={styles.buttonContent}>
+              <Icon name="arrow-right" size={15} style={styles.arrowIcon} />
+              </View>
+            <View>
+              <Text style={styles.getStartedText}>Sign in</Text>
           </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              value={formikProps.values.password}
-              placeholder='Type Here...'
-              onChangeText={formikProps.handleChange('password')}
-              onBlur={formikProps.handleBlur('password')}
-              secureTextEntry={true}
-              style={styles.input}
-            />
-            <Text style={styles.errorText}>
-              {formikProps.touched.password && formikProps.errors.password ? (
-                <>{formikProps.errors.password}</>
-              ) : null}
-            </Text>
-          </View>
-          <View style={styles.buttonContainer}>
-          <Text style={styles.errorText}>{errorMessage}</Text>
-          <Button 
-              title="Sign in" 
-              onPress={(event: GestureResponderEvent) => formikProps.handleSubmit()} 
-            />
-          </View>
-        </View>
-      )}
-    </Formik>
+    </TouchableOpacity>
+      <View style={styles.conituneWithStyle}>
+        <View style={styles.startLine} /><View>
+          <Text style={styles.continueText}>Or Continue with</Text>
+        </View><View style={styles.afetLine} />
+      </View>
+      <View></View>
+    {/* </View> */}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'flex-start',
-    position:"absolute",
-    paddingHorizontal: 20
+    backgroundColor: "#FEFAF4",
+    padding:3
   },
-  label: {
-    marginBottom: 10,
+  flashImage: {
+    width: "100%",
+    height: 200,
+    borderRadius:15,
+    borderBottomRightRadius:150,
   },
-  inputContainer: {
-    // flex:1,
-    width: '100%',
-    marginBottom: 20,
+  texts:{
+    marginTop:20,
+    marginLeft:20
   },
-  PassinputContainer: {
-    // flex:2,
-    width: '100%',
-    marginBottom: 20,
+  signIn:{
+    fontWeight:"bold",
+    color:"black",
+    fontSize:20,
+    // marginLeft:20
+  },
+  welcomeText:{
+    // marginLeft:10,
+    marginTop:5,
+    fontSize:10,
+    fontWeight:"bold"
   },
   input: {
     height: 40,
-    // width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 10,
-  },
-  errorText: {
-    color: 'red',
+    marginLeft: 20,
     marginTop: 5,
+    borderWidth: 2,
+    // padding: 10,
+    marginRight:30,
+    borderRadius:10,
+    color:"#D6D4D4",
+    borderColor:"#AFAFAE"
   },
-  buttonContainer: {
-    marginTop: 10,
+  forgotPasswordText:{
+    marginLeft: 260,
+    textDecorationLine:"underline",
+    color:"black"
   },
+  passwordText:{
+    marginLeft: 20,
+    marginTop:15,
+    fontWeight:"bold",
+    color:"black",
+    fontSize:12
+  },
+  getStartedButton: {
+    // flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: 'black',
+    borderRadius: 30,
+    paddingVertical: 14,
+    margin:15
+  },
+  getStartedText: {
+    color: 'white',
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
+  buttonContent: {
+    backgroundColor: 'white',
+    width:40,
+    height:40,
+    borderRadius:100,
+    justifyContent:'center',
+    alignItems:'center',
+    position:'absolute',
+    left:4
+  },
+  arrowIcon: {
+    color: 'black',
+    borderRadius: 100,
+  },
+  startLine:{
+    flex: 1, 
+    height: 1, 
+    backgroundColor: 'black',
+    marginLeft:20
+  },
+  afetLine:{
+    flex: 1, 
+    height: 1,
+    backgroundColor: 'black',
+    marginRight:20
+  },
+  continueText:{
+    width: 150, 
+    textAlign: 'center'
+  },
+  conituneWithStyle:{
+    flexDirection: 'row', 
+    alignItems: 'center'
+  }
+
 });
 
 export default Signin;

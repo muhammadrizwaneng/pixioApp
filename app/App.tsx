@@ -5,43 +5,36 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
 import Signin from './sso/Signin';
-import Home from './sso/Home';
-import Profile from './sso/Profile';
-import PhoneNumber from './sso/PhoneNumber';
-import Activity from './sso/Activity';
-import MobileDesign from './mobileDesign/MobileDesign';
-import EcommerceDesign from './mobileDesign/EcommerceDesign';
-import EcommerceDetailScreen from './mobileDesign/EcommerceDetailScreen'
-import EcommerceCategories from './mobileDesign/EcommerceCategories';
+import HomePage from './sso/HomePage';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
-const AuthenticatedDrawerScreens = () => {
-  return (
-    <Drawer.Navigator initialRouteName='Tab'>
-      <Drawer.Screen name='Home' component={Home} />
-      <Drawer.Screen name='Profile' component={Profile} />
-      <Drawer.Screen name='Template' component={MobileDesign} />
-      <Drawer.Screen name='Ecommerce Design' component={EcommerceDesign} />
-      <Drawer.Screen name="Tab" component={AuthenticatedTabScreens} />
-    </Drawer.Navigator>
-  );
-}
+// const AuthenticatedDrawerScreens = () => {
+//   return (
+//     <Drawer.Navigator initialRouteName='Tab'>
+//       <Drawer.Screen name='Home' component={Home} />
+//       <Drawer.Screen name='Profile' component={Profile} />
+//       <Drawer.Screen name='Template' component={MobileDesign} />
+//       <Drawer.Screen name='Ecommerce Design' component={EcommerceDesign} />
+//       <Drawer.Screen name="Tab" component={AuthenticatedTabScreens} />
+//     </Drawer.Navigator>
+//   );
+// }
 
-const AuthenticatedTabScreens = () => {
-  return (
-    <Tab.Navigator initialRouteName='Ecommerce Design'>
-      <Tab.Screen name='Ecommerce Design' component={EcommerceDesign} />
-      <Tab.Screen name='Phone Number' component={PhoneNumber} />
-      <Tab.Screen name='Activity' component={Activity} />
-      <Tab.Screen name='Fryer Details' component={EcommerceDetailScreen} />
-      <Tab.Screen name='Categories' component={EcommerceCategories} />
+// const AuthenticatedTabScreens = () => {
+//   return (
+//     <Tab.Navigator initialRouteName='Fryer Details'>
+//       {/* <Tab.Screen name='Ecommerce Design' component={EcommerceDesign} /> */}
+//       {/* <Tab.Screen name='Phone Number' component={PhoneNumber} />
+//       <Tab.Screen name='Activity' component={Activity} /> */}
+//       <Tab.Screen name='Fryer Details' component={Signin} />
+//       {/* <Tab.Screen name='Categories' component={EcommerceCategories} /> */}
 
-    </Tab.Navigator>
-  );
-}
+//     </Tab.Navigator>
+//   );
+// }
 
 function App() {
   const selectUserInfo = (state: any) => state?.user?.status;
@@ -51,16 +44,17 @@ function App() {
   return (
     <NavigationContainer>
       {isLoggedIn == "authenticated" ? (
-        <AuthenticatedDrawerScreens /> // Or <AuthenticatedTabScreens />
+        <></>
+        // <AuthenticatedTabScreens /> // Or <AuthenticatedTabScreens />
       ) : (
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen
-            name="Home"
-            component={Signin}
+            name="Signin"
+            component={HomePage}
             options={{ title: 'Sign In' }}
           />
-          <Stack.Screen name="Signin" component={Signin} />
-          {/* <Stack.Screen name="HomePage" component={Home} /> */}
+          <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="Login" component={Signin} />
         </Stack.Navigator>
       )}
     </NavigationContainer>
