@@ -1,12 +1,20 @@
-import { View, Image, StyleSheet, Text, ScrollView, TextInput } from 'react-native';
-import React, { useEffect } from 'react';
+import { View, Image, StyleSheet, Text, ScrollView, TextInput, Dimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EcommerceCategoryImg from './components/EcommerceCategoryImg';
 import EcommerceKitchenImages from './components/EcommerceKitchenCategory';
 import EcommerceOtherAppliance from './components/EcommerceOtherAppliance';
 
+
+const windowWidth = Dimensions.get('window').width;
+const leftContent = 70;
+const rightContent =(windowWidth - leftContent) ;
+
+console.log("windowWidth", rightContent)
+
 const EcommerceCategories = () => {
+
   const navigation = useNavigation();
   const imageData = [
     { text: 'Apparel' },
@@ -49,33 +57,40 @@ const EcommerceCategories = () => {
             </View>
         </View>
         <View style={styles.textDirection}>
-            <View>
+            <View style={{width:leftContent, }}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollViewContent}>
                     {imageData.map((item, index) => {
-                    const words = item.text.split(' ');
-                    return (
+                      return (
                         <View key={index} style={styles.itemContainer}>
-                        <Text style={styles.itemText}>{words[0]}</Text>
-                        {words.length > 1 && <Text style={styles.itemText}>{words[1]}</Text>}
+                          <View style={item.text == "Smart Home" ? styles.smartHomeView :null}>
+                            <Text style={item.text == "Smart Home" ? styles.smartHomeText :styles.itemText}>{item.text}</Text>
+                          </View>
+                          {/* {item.text == "Smart Home" ? (
+                            <>
+                            <View  style={styles.smartHomeText}>
+                              <Text>{item.text}</Text>
+                            </View>
+                            </>
+                          ) : (
+                            <Text style={styles.itemText}>{item.text}</Text>
+                          )} */}
                         </View>
-                    );
+                      );
                     })}
                 </ScrollView>
             </View>
-            {/* <View> */}
-                <View>
-                    <EcommerceCategoryImg />
-                    <View style={styles.spaceBetweenComponents}>
-                        <EcommerceKitchenImages />
-                    </View>
-                    <EcommerceOtherAppliance />
+            <View style={{width:rightContent, }}>
+                <EcommerceCategoryImg />
+                <View style={styles.spaceBetweenComponents}>
+                    <EcommerceKitchenImages />
                 </View>
-            {/* </View> */}
+                <EcommerceOtherAppliance />
+            </View>
         </View>
       </View>
     </ScrollView>
   );
-};
+}  
 
 const styles = StyleSheet.create({
   scrollViewContent: {
@@ -120,14 +135,28 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
     color:"black"
   },
-//   line: {
-//     borderBottomWidth: 1,
-//     borderBottomColor: '#ccc',
-//     marginBottom: 20,
-//   },
+  line: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 20,
+    flexDirection:"column"
+  },
     iconSetting:{
         marginTop:12,
         marginLeft:15
+    },
+    smartHomeView:{
+      backgroundColor: "#F2DBD4",
+      textAlign: "center",
+      borderRadius:5,
+      paddingVertical:8,
+      paddingHorizontal:4
+      // width:50,
+    },
+    smartHomeText: {
+      fontSize: 10,
+      fontWeight: "bold",
+      color: "#F08463",
     }
 });
 

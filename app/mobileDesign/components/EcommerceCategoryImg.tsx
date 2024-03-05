@@ -21,14 +21,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   imageContainer: {
-    marginRight: 20,
+    paddingHorizontal:10,
+    flex:1
   },
   flashimage: {
-    width: 290,
+    width: '87%',
     height: 180,
     resizeMode: 'contain',
     borderRadius: 15,
-    marginLeft:30
+    
   },
 });
 

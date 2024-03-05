@@ -40,7 +40,7 @@ const EcommerceOtherAppliance = () => {
 const styles = StyleSheet.create({
 
   scrollViewContent: {
-    marginLeft:30
+    marginLeft:10
   },
   imageBlock: {
     marginRight: 15,
