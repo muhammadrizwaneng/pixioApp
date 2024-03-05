@@ -6,8 +6,6 @@ const Activty = ({route, navigation}) => {
   const selectUserInfo = (state: any) => state?.user;
   const user = useSelector(selectUserInfo);
   console.log("----------------user",user)
-//   const userData =JSON.stringify(user)
-//   console.log("----------------userData",userData)
 return (
     <View style={styles.container}>
       <View style={styles.row}>
