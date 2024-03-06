@@ -53,19 +53,36 @@ const Signin = ({navigation}) => {
           style={styles.getStartedButton}
           onPress={() => navigation.navigate('Login')}
         >
-          <View style={styles.buttonContent}>
+            <View style={styles.buttonContent}>
               <Icon name="arrow-right" size={15} style={styles.arrowIcon} />
               </View>
             <View>
               <Text style={styles.getStartedText}>Sign in</Text>
-          </View>
+            </View>
     </TouchableOpacity>
       <View style={styles.conituneWithStyle}>
         <View style={styles.startLine} /><View>
           <Text style={styles.continueText}>Or Continue with</Text>
         </View><View style={styles.afetLine} />
       </View>
-      <View></View>
+      <View style={styles.googleText}>
+        <View>
+          <Icon name="google" size={15}/>
+        </View>
+        <Text style={styles.signInText}> Sign in With Google</Text>
+      </View>
+      <View style={styles.appleText}>
+        <View>
+          <Icon name="apple" size={15}/>
+        </View>
+        <Text style={styles.signInText}> Sign in With Apple</Text>
+      </View>
+      <View style={{flexDirection:"row"}}>
+        <View>
+        <Text style={{marginLeft:90,color:"black"}}> Not a member? </Text>
+        </View>
+        <Text style={styles.createAccount}>Create an account</Text>
+      </View>
     {/* </View> */}
     </View>
   );
@@ -75,11 +92,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FEFAF4",
-    padding:3
+    padding:4
   },
   flashImage: {
     width: "100%",
-    height: 200,
+    height: 180,
     borderRadius:15,
     borderBottomRightRadius:150,
   },
@@ -113,7 +130,8 @@ const styles = StyleSheet.create({
   forgotPasswordText:{
     marginLeft: 260,
     textDecorationLine:"underline",
-    color:"black"
+    color:"black",
+    marginTop:5
   },
   passwordText:{
     marginLeft: 20,
@@ -169,6 +187,35 @@ const styles = StyleSheet.create({
   conituneWithStyle:{
     flexDirection: 'row', 
     alignItems: 'center'
+  },
+  googleText:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: '#E9E2DC',
+    borderRadius: 30,
+    paddingVertical: 14,
+    margin:15
+  },
+  appleText:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: '#E9E2DC',
+    borderRadius: 30,
+    paddingVertical: 14,
+    marginLeft:15,
+    marginBottom:15,
+    marginRight:15,
+  },
+  signInText:{
+    color:"black",
+    marginLeft:5
+  },
+  createAccount:{
+    textDecorationLine:"underline",
+    color:"black",
+    fontWeight:"bold"
   }
 
 });
