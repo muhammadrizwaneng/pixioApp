@@ -2,12 +2,52 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, ScrollView, Dimensions, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import { Text } from 'react-native';
 import  Icon from 'react-native-vector-icons/FontAwesome';
-import { Link } from '@react-navigation/native';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSlice';
 
 const Signin = ({navigation}) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [text, onChangeText] = React.useState('');
-  const [number, onChangeNumber] = React.useState('');
+  // const [text, onChangeText] = useState('');
+  // const [number, onChangeNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch()
+
+  const handleSubmit = async (values) => {
+    setErrorMessage("")
+    const { email, password } = values;
+    console.log("---------------------", values);
+    
+    if (!email) {
+      setErrorMessage("Please enter email");
+      return;
+    } else if (!password) {
+      setErrorMessage("Please enter Password");
+      return;
+    }
+  
+    console.log(email, password);
+    const payload = {email, password}
+
+    dispatch(login(payload))
+    .unwrap()
+    .then((result) => {
+      // Handle successful login response
+      // console.log("Login successful", result);
+      if(result.data.code == 200 || result.data.code == "200"){
+        console.log("user is login")
+        // navigation.navigate("Home")
+      }
+    })
+    .catch((error) => {
+      // Handle login error
+      console.error("Login error", error);
+    });
+  
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -18,73 +58,86 @@ const Signin = ({navigation}) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Image
-              source={require("../../images/pretty-young.jpeg")}
-              style={styles.flashImage}
-            />
-      </View>
-      <View style={styles.texts}>
-        <Text style={styles.signIn}>Sign In To Your Account</Text>
-        <Text style={styles.welcomeText}>Welcome Back You've Been Missed!</Text>
-      </View>
-      <SafeAreaView>
-        <Text style={styles.passwordText}>Email Address</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <Text style={styles.passwordText}>Password</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-        />
-    </SafeAreaView>
-    <View>
-    {/* <Link to={{ screen: 'Profile', params: { id: 'jane' } }}>
-      Go to Jane's profile
-    </Link> */}
-      <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-    </View>
-    <TouchableOpacity
-          style={styles.getStartedButton}
-          onPress={() => navigation.navigate('Login')}
-        >
-            <View style={styles.buttonContent}>
-              <Icon name="arrow-right" size={15} style={styles.arrowIcon} />
-              </View>
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validationSchema={Yup.object().shape({
+        email: Yup.string().email('Invalid email').required('Email is required'),
+        password: Yup.string().required('Password is required'),
+      })}
+      onSubmit={handleSubmit}
+    >
+      {(formikProps)=>(
+          <View style={styles.container}>
             <View>
-              <Text style={styles.getStartedText}>Sign in</Text>
+              <Image
+                    source={require("../../images/pretty-young.jpeg")}
+                    style={styles.flashImage}
+                  />
             </View>
-    </TouchableOpacity>
-      <View style={styles.conituneWithStyle}>
-        <View style={styles.startLine} /><View>
-          <Text style={styles.continueText}>Or Continue with</Text>
-        </View><View style={styles.afetLine} />
-      </View>
-      <View style={styles.googleText}>
-        <View>
-          <Icon name="google" size={15}/>
+            <View style={styles.texts}>
+              <Text style={styles.signIn}>Sign In To Your Account</Text>
+              <Text style={styles.welcomeText}>Welcome Back You've Been Missed!</Text>
+            </View>
+            <SafeAreaView>
+              <Text style={styles.passwordText}>Email Address</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={formikProps.handleChange('email')}
+                value={formikProps.values.email}
+                onBlur={formikProps.handleBlur('email')}
+              />
+              <Text style={styles.errorText}>
+            {formikProps.touched.email && formikProps.errors.email ? (
+              <>{formikProps.errors.email}</>
+            ) : null} </Text>
+              <Text style={styles.passwordText}>Password</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={formikProps.handleChange('password')}
+                value={formikProps.values.password}
+                onBlur={formikProps.handleBlur('password')}
+              />
+          </SafeAreaView>
+          <View>
+            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+          </View>
+          <TouchableOpacity
+                style={styles.getStartedButton}
+                onPress={() => formikProps.handleSubmit()}
+              >
+                  <View style={styles.buttonContent}>
+                    <Icon name="arrow-right" size={15} style={styles.arrowIcon} />
+                    </View>
+                  <View>
+                    <Text style={styles.getStartedText}>Sign in</Text>
+                  </View>
+          </TouchableOpacity>
+            <View style={styles.conituneWithStyle}>
+              <View style={styles.startLine} /><View>
+                <Text style={styles.continueText}>Or Continue with</Text>
+              </View><View style={styles.afetLine} />
+            </View>
+            <View style={styles.googleText}>
+              <View>
+                <Icon name="google" size={15}/>
+              </View>
+              <Text style={styles.signInText}> Sign in With Google</Text>
+            </View>
+            <View style={styles.appleText}>
+              <View>
+                <Icon name="apple" size={15}/>
+              </View>
+              <Text style={styles.signInText}> Sign in With Apple</Text>
+            </View>
+            <View style={{flexDirection:"row"}}>
+              <View>
+              <Text style={{marginLeft:90,color:"black"}}> Not a member? </Text>
+              </View>
+              <Text style={styles.createAccount}>Create an account</Text>
+            </View>
         </View>
-        <Text style={styles.signInText}> Sign in With Google</Text>
-      </View>
-      <View style={styles.appleText}>
-        <View>
-          <Icon name="apple" size={15}/>
-        </View>
-        <Text style={styles.signInText}> Sign in With Apple</Text>
-      </View>
-      <View style={{flexDirection:"row"}}>
-        <View>
-        <Text style={{marginLeft:90,color:"black"}}> Not a member? </Text>
-        </View>
-        <Text style={styles.createAccount}>Create an account</Text>
-      </View>
-    {/* </View> */}
-    </View>
+      )}
+    </Formik>
   );
 };
 
@@ -124,7 +177,7 @@ const styles = StyleSheet.create({
     // padding: 10,
     marginRight:30,
     borderRadius:10,
-    color:"#D6D4D4",
+    color:"black",
     borderColor:"#AFAFAE"
   },
   forgotPasswordText:{
@@ -216,7 +269,11 @@ const styles = StyleSheet.create({
     textDecorationLine:"underline",
     color:"black",
     fontWeight:"bold"
-  }
+  },
+  errorText: {
+    color: 'red',
+    marginLeft: 20,
+  },
 
 });
 
