@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
 import Signin from './sso/Signin';
 import HomePage from './sso/HomePage';
+import MyProfile from './sso/MyProfile';
+import ForgotPsssword from './sso/ForgotPassword';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -23,18 +25,18 @@ const Tab = createBottomTabNavigator();
 //   );
 // }
 
-// const AuthenticatedTabScreens = () => {
-//   return (
-//     <Tab.Navigator initialRouteName='Fryer Details'>
-//       {/* <Tab.Screen name='Ecommerce Design' component={EcommerceDesign} /> */}
-//       {/* <Tab.Screen name='Phone Number' component={PhoneNumber} />
-//       <Tab.Screen name='Activity' component={Activity} /> */}
-//       <Tab.Screen name='Fryer Details' component={Signin} />
-//       {/* <Tab.Screen name='Categories' component={EcommerceCategories} /> */}
+const AuthenticatedTabScreens = () => {
+  return (
+    <Tab.Navigator initialRouteName='Profile'>
+      {/* <Tab.Screen name='Ecommerce Design' component={EcommerceDesign} /> */}
+      {/* <Tab.Screen name='Phone Number' component={PhoneNumber} />
+      <Tab.Screen name='Activity' component={Activity} /> */}
+      <Tab.Screen name='Profile' component={MyProfile} />
+      {/* <Tab.Screen name='Categories' component={EcommerceCategories} /> */}
 
-//     </Tab.Navigator>
-//   );
-// }
+    </Tab.Navigator>
+  );
+}
 
 function App() {
   const selectUserInfo = (state: any) => state?.user?.status;
@@ -44,8 +46,7 @@ function App() {
   return (
     <NavigationContainer>
       {isLoggedIn == "authenticated" ? (
-        <></>
-        // <AuthenticatedTabScreens /> // Or <AuthenticatedTabScreens />
+         <AuthenticatedTabScreens /> // Or <AuthenticatedTabScreens />
       ) : (
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen
@@ -55,6 +56,7 @@ function App() {
           />
           <Stack.Screen name="Home" component={HomePage} />
           <Stack.Screen name="Login" component={Signin} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPsssword} />
         </Stack.Navigator>
       )}
     </NavigationContainer>

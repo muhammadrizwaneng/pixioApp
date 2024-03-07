@@ -9,7 +9,7 @@ import { login } from '../features/userSlice';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 
-const Signin = ({navigation}) => {
+const ForgotPsssword = ({navigation}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   // const [text, onChangeText] = useState('');
   // const [number, onChangeNumber] = useState('');
@@ -51,11 +51,6 @@ const Signin = ({navigation}) => {
   
   };
 
-  const handleForgotPassword = () => {
-    // Navigate to the ForgotPassword screen
-    navigation.navigate('ForgotPassword');
-  };
-
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -78,16 +73,17 @@ const Signin = ({navigation}) => {
             <View style={styles.container}>
               <View>
                 <Image
-                      source={require("../../images/pretty-young.jpeg")}
+                      source={require("../../images/vincent-chase.jpeg")}
                       style={styles.flashImage}
                     />
               </View>
               <View style={styles.texts}>
-                <Text style={styles.signIn}>Sign In To Your Account</Text>
-                <Text style={styles.welcomeText}>Welcome Back You've Been Missed!</Text>
+                <Text style={styles.signIn}>Forgot Password</Text>
+                <Text style={styles.welcomeText}>Enter The Email Associated With Your Account And</Text>
+                <Text style={styles.welcomeText}>We'll Send And Email To Reset Your Password</Text>
               </View>
               <SafeAreaView>
-                <Text style={styles.passwordText}>Email Address</Text>
+                <Text style={styles.passwordText}>Email Address*</Text>
                 <TextInput
                   style={styles.input}
                   onChangeText={formikProps.handleChange('email')}
@@ -98,24 +94,7 @@ const Signin = ({navigation}) => {
               {formikProps.touched.email && formikProps.errors.email ? (
                 <>{formikProps.errors.email}</>
               ) : null} </Text>
-                <Text style={styles.passwordText}>Password</Text>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={formikProps.handleChange('password')}
-                  value={formikProps.values.password}
-                  onBlur={formikProps.handleBlur('password')}
-                />
             </SafeAreaView>
-            {/* <View>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-              
-            </View> */}
-            <View>
-              {/* Your existing form */}
-              <TouchableOpacity onPress={handleForgotPassword}>
-                <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-              </TouchableOpacity>
-            </View>
             <TouchableOpacity
                   style={styles.getStartedButton}
                   onPress={() => formikProps.handleSubmit()}
@@ -124,32 +103,9 @@ const Signin = ({navigation}) => {
                       <Icon name="arrow-right" size={15} style={styles.arrowIcon} />
                       </View>
                     <View>
-                      <Text style={styles.getStartedText}>Sign in</Text>
+                      <Text style={styles.getStartedText}>Send Mail</Text>
                     </View>
             </TouchableOpacity>
-              <View style={styles.conituneWithStyle}>
-                <View style={styles.startLine} /><View>
-                  <Text style={styles.continueText}>Or Continue with</Text>
-                </View><View style={styles.afetLine} />
-              </View>
-              <View style={styles.googleText}>
-                <View>
-                  <Icon name="google" size={15}/>
-                </View>
-                <Text style={styles.signInText}> Sign in With Google</Text>
-              </View>
-              <View style={styles.appleText}>
-                <View>
-                  <Icon name="apple" size={15}/>
-                </View>
-                <Text style={styles.signInText}> Sign in With Apple</Text>
-              </View>
-              <View style={{flexDirection:"row"}}>
-                <View>
-                <Text style={{marginLeft:90,color:"black"}}> Not a member? </Text>
-                </View>
-                <Text style={styles.createAccount}>Create an account</Text>
-              </View>
           </View>
         )}
       </Formik>
@@ -160,13 +116,13 @@ const Signin = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FEFAF4",
+    backgroundColor: "#FFFAF3",
     padding:4
   },
   flashImage: {
-    width: "100%",
-    height: 180,
-    borderRadius:15,
+    width: "110%",
+    height: 200,
+    borderRadius:5,
     borderBottomRightRadius:150,
   },
   texts:{
@@ -189,11 +145,12 @@ const styles = StyleSheet.create({
     height: 40,
     marginLeft: 20,
     marginTop: 5,
-    borderWidth: 2,
+    borderWidth: 1,
     // padding: 10,
     marginRight:30,
     borderRadius:10,
     color:"black",
+    backgroundColor:"#FFFFFF",
     borderColor:"#AFAFAE"
   },
   forgotPasswordText:{
@@ -216,7 +173,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderRadius: 30,
     paddingVertical: 14,
-    margin:15
+    margin:15,
+    marginTop:200
   },
   getStartedText: {
     color: 'white',
@@ -293,4 +251,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Signin;
+export default ForgotPsssword;
