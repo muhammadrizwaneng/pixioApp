@@ -86,7 +86,7 @@ const Signin = ({navigation}) => {
                 <Text style={styles.signIn}>Sign In To Your Account</Text>
                 <Text style={styles.welcomeText}>Welcome Back You've Been Missed!</Text>
               </View>
-              <SafeAreaView>
+              {/* <SafeAreaView> */}
                 <Text style={styles.passwordText}>Email Address</Text>
                 <TextInput
                   style={styles.input}
@@ -105,13 +105,12 @@ const Signin = ({navigation}) => {
                   value={formikProps.values.password}
                   onBlur={formikProps.handleBlur('password')}
                 />
-            </SafeAreaView>
+            {/* </SafeAreaView> */}
             {/* <View>
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
               
             </View> */}
             <View>
-              {/* Your existing form */}
               <TouchableOpacity onPress={handleForgotPassword}>
                 <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
               </TouchableOpacity>
