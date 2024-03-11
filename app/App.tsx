@@ -15,6 +15,7 @@ import { View } from 'react-native';
 import UserProfile from './sso/components/UserProfile';
 import AccountSetting from './sso/components/AccountSetting';
 import Rating from './sso/components/Rating';
+import MyCart from './sso/components/MyCart';
 import ProfileEdit from './sso/ProfileEdit';
 import AntIcon from "react-native-vector-icons/AntDesign"
 
@@ -30,7 +31,7 @@ const Tab = createBottomTabNavigator();
 const AuthenticatedTabScreens = () => {
   return (
     <Tab.Navigator
-      initialRouteName='Profile'
+      initialRouteName='MyCart'
       screenOptions={{
         tabBarShowLabel: false,
       }}>
@@ -91,8 +92,21 @@ const AuthenticatedTabScreens = () => {
           ),
         }}
       />
+  
+  <Tab.Screen
+        name='MyCart'
+        component={MyCart} // Use ProfileEditStack component here
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <View style={{ backgroundColor: focused ? 'black' : 'transparent', borderRadius: 25, padding: 5 }}>
+              < AntIcon name='shoppingcart' size={17} color={focused ? 'white' : color} />
+            </View>
+          ),
+        }}
+      />
       
     </Tab.Navigator>
+    
   );
 };
 
