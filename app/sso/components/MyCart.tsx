@@ -34,22 +34,11 @@ const MyCart = ({navigation}) => {
     <View style={styles.container}>
       <View style={{backgroundColor: '#FFF', flexDirection: 'row'}}>
         <View style={{margin: 15}}>
-          <Text style={{fontWeight: 'bold', color: '#000'}}>My Cart</Text>
+          <Text style={styles.cartText}>My Cart</Text>
           <View style={styles.flexDirectionRow}>
-            <Text style={{fontWeight: 'bold', fontSize: 10, color: '#000'}}>
-              8 Items
-            </Text>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 10,
-                marginLeft: 20,
-                color: '#363535',
-              }}>
-              Deliver To:{' '}
-              <Text style={{fontWeight: 'bold', fontSize: 10, color: '#000'}}>
-                London
-              </Text>
+            <Text style={styles.itemText}>8 Items</Text>
+            <Text style={styles.deliverToText}>
+              Deliver To: <Text style={styles.itemText}>London</Text>
             </Text>
           </View>
         </View>
@@ -61,14 +50,11 @@ const MyCart = ({navigation}) => {
         </View>
       </View>
       <View style={{margin: 15}}>
-        <Text style={{color: '#000', fontWeight: '400'}}>
-          SubTotal{' '}
-          <Text style={{color: '#000', fontWeight: 'bold', fontSize: 17}}>
-            $3,599
-          </Text>
+        <Text style={styles.subTotalText}>
+          SubTotal <Text style={styles.totalPriceText}>$3,599</Text>
         </Text>
 
-        <Text style={{color: '#2F9E42', fontWeight: '600', marginTop: 5}}>
+        <Text style={styles.freeOrder}>
           {' '}
           <AntIcon
             name="checkcircle"
@@ -80,236 +66,196 @@ const MyCart = ({navigation}) => {
       </View>
       <View style={styles.startLine}></View>
       <ScrollView>
-
         <View style={styles.flexDirectionRow}>
-            <View style={styles.categoryItem}>
+          <View style={styles.categoryItem}>
             <View style={styles.categoryImge4Circle}>
-                <Icon name="heart-o" size={15} style={styles.heartIcon} />
-                <Image
+              <Icon name="heart-o" size={15} style={styles.heartIcon} />
+              <Image
                 source={require('../../../images/category_4-removebg.png')}
                 style={styles.categoryImge2}
-                />
+              />
             </View>
-            </View>
-            <View style={styles.ratingText}>
+          </View>
+          <View style={styles.ratingText}>
             <Text style={styles.ratingBlue}>Bluebell Hand Block Tiered</Text>
             <Text style={styles.ratingBlue}>Dress</Text>
             <View style={{flexDirection: 'row', marginTop: 5}}>
-                <Text style={styles.ratingBlue}>$80</Text>
-                <Text style={styles.ratingPrice}>$95</Text>
-                <Text style={styles.Qty}>
+              <Text style={styles.ratingBlue}>$80</Text>
+              <Text style={styles.ratingPrice}>$95</Text>
+              <Text style={styles.Qty}>
                 {' '}
-                <AntIcon
-                    name="star"
-                    size={10}
-                    style={{color: '#F8B444', marginTop: 2}}
-                />{' '}
-                (2k Review)
-                </Text>
+                <AntIcon name="star" size={10} style={styles.reviewText} /> (2k
+                Review)
+              </Text>
             </View>
             <View style={{marginTop: 5}}>
-                <Text style={styles.Delivery}>FREE Delivery</Text>
-                <View style={styles.sizeContainer}>
+              <Text style={styles.Delivery}>FREE Delivery</Text>
+              <View style={styles.sizeContainer}>
                 <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="minus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
-                </View>
-                <Text style={{marginLeft:10,marginRight:10,marginTop:5,fontWeight:"bold",color:"#000"}}>1</Text>
-                <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="plus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
-                </View>
-                <Text style={{marginLeft:40,marginTop:5}}><AntIcon
-                    name="delete"
-                    color="#000"
-                    size={15}
-                />{" "}Remove</Text>
-                </View>
-            </View>
-            </View>
-            
-        </View>
-        <View style={styles.startLine}></View>
-        <View style={styles.flexDirectionRow}>
-            <View style={styles.categoryItem}>
-            <View style={styles.categoryImge4Circle}>
-                <Icon name="heart-o" size={15} style={styles.heartIcon} />
-                <Image
-                source={require('../../../images/pretty-young-removebg_1.png')}
-                style={styles.prettyYoungImg}
-                />
-            </View>
-            </View>
-            <View style={styles.ratingText}>
-            <Text style={styles.ratingBlue}>Bluebell Hand Block Tiered</Text>
-            <Text style={styles.ratingBlue}>Dress</Text>
-            <View style={{flexDirection: 'row', marginTop: 5}}>
-                <Text style={styles.ratingBlue}>$80</Text>
-                <Text style={styles.ratingPrice}>$95</Text>
-                <Text style={styles.Qty}>
-                {' '}
-                <AntIcon
-                    name="star"
-                    size={10}
-                    style={{color: '#F8B444', marginTop: 2}}
-                />{' '}
-                (2k Review)
-                </Text>
-            </View>
-            <View style={{marginTop: 5}}>
-                <Text style={styles.Delivery}>FREE Delivery</Text>
-                <View style={styles.sizeContainer}>
-                <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="minus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
+                  <Text>
+                    {' '}
+                    <AntIcon name="minus" color="#FFF" size={15} />
+                  </Text>
                 </View>
                 <Text style={styles.TextOne}>1</Text>
                 <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="plus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
+                  <Text>
+                    {' '}
+                    <AntIcon name="plus" color="#FFF" size={15} />
+                  </Text>
                 </View>
-                <Text style={{marginLeft:40,marginTop:5}}><AntIcon
-                    name="delete"
-                    color="#000"
-                    size={15}
-                />{" "}Remove</Text>
-                </View>
+                <Text style={{marginLeft: 40, marginTop: 5}}>
+                  <AntIcon name="delete" color="#000" size={15} /> Remove
+                </Text>
+              </View>
             </View>
-            </View>
-            
+          </View>
         </View>
         <View style={styles.startLine}></View>
         <View style={styles.flexDirectionRow}>
-            <View style={styles.categoryItem}>
+          <View style={styles.categoryItem}>
+            <View style={styles.categoryImge4Circle}>
+              <Icon name="heart-o" size={15} style={styles.heartIcon} />
+              <Image
+                source={require('../../../images/pretty-young-removebg_1.png')}
+                style={styles.prettyYoungImg}
+              />
+            </View>
+          </View>
+          <View style={styles.ratingText}>
+            <Text style={styles.ratingBlue}>Bluebell Hand Block Tiered</Text>
+            <Text style={styles.ratingBlue}>Dress</Text>
+            <View style={{flexDirection: 'row', marginTop: 5}}>
+              <Text style={styles.ratingBlue}>$80</Text>
+              <Text style={styles.ratingPrice}>$95</Text>
+              <Text style={styles.Qty}>
+                {' '}
+                <AntIcon name="star" size={10} style={styles.reviewText} /> (2k
+                Review)
+              </Text>
+            </View>
+            <View style={{marginTop: 5}}>
+              <Text style={styles.Delivery}>FREE Delivery</Text>
+              <View style={styles.sizeContainer}>
+                <View style={styles.XSizeCircle}>
+                  <Text>
+                    {' '}
+                    <AntIcon name="minus" color="#FFF" size={15} />
+                  </Text>
+                </View>
+                <Text style={styles.TextOne}>1</Text>
+                <View style={styles.XSizeCircle}>
+                  <Text>
+                    {' '}
+                    <AntIcon name="plus" color="#FFF" size={15} />
+                  </Text>
+                </View>
+                <Text style={{marginLeft: 40, marginTop: 5}}>
+                  <AntIcon name="delete" color="#000" size={15} /> Remove
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View style={styles.startLine}></View>
+        <View style={styles.flexDirectionRow}>
+          <View style={styles.categoryItem}>
             <View style={styles.excitedGirlImgCircle}>
-                <Icon name="heart-o" size={15} style={styles.heartIcon} />
-                <Image
+              <Icon name="heart-o" size={15} style={styles.heartIcon} />
+              <Image
                 source={require('../../../images/excited-white-girl_1-removebg_1.png')}
                 style={styles.exciteImage}
-                />
+              />
             </View>
-            </View>
-            <View style={styles.ratingText}>
+          </View>
+          <View style={styles.ratingText}>
             <Text style={styles.ratingBlue}>Bluebell Hand Block Tiered</Text>
             <Text style={styles.ratingBlue}>Dress</Text>
             <View style={{flexDirection: 'row', marginTop: 5}}>
-                <Text style={styles.ratingBlue}>$80</Text>
-                <Text style={styles.ratingPrice}>$95</Text>
-                <Text style={styles.Qty}>
+              <Text style={styles.ratingBlue}>$80</Text>
+              <Text style={styles.ratingPrice}>$95</Text>
+              <Text style={styles.Qty}>
                 {' '}
-                <AntIcon
-                    name="star"
-                    size={10}
-                    style={{color: '#F8B444', marginTop: 2}}
-                />{' '}
-                (2k Review)
-                </Text>
+                <AntIcon name="star" size={10} style={styles.reviewText} /> (2k
+                Review)
+              </Text>
             </View>
             <View style={{marginTop: 5}}>
-                <Text style={styles.Delivery}>FREE Delivery</Text>
-                <View style={styles.sizeContainer}>
+              <Text style={styles.Delivery}>FREE Delivery</Text>
+              <View style={styles.sizeContainer}>
                 <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="minus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
+                  <Text>
+                    {' '}
+                    <AntIcon name="minus" color="#FFF" size={15} />
+                  </Text>
                 </View>
-                <Text style={{marginLeft:10,marginRight:10,marginTop:5,fontWeight:"bold",color:"#000"}}>1</Text>
+                <Text style={styles.TextOne}>1</Text>
                 <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="plus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
+                  <Text>
+                    {' '}
+                    <AntIcon name="plus" color="#FFF" size={15} />
+                  </Text>
                 </View>
-                <Text style={{marginLeft:40,marginTop:5}}><AntIcon
-                    name="delete"
-                    color="#000"
-                    size={15}
-                />{" "}Remove</Text>
-                </View>
+                <Text style={{marginLeft: 40, marginTop: 5}}>
+                  <AntIcon name="delete" color="#000" size={15} /> Remove
+                </Text>
+              </View>
             </View>
-            </View>
-            
+          </View>
         </View>
         <View style={styles.startLine}></View>
         <View style={styles.flexDirectionRow}>
-            <View style={styles.categoryItem}>
+          <View style={styles.categoryItem}>
             <View style={styles.excitedGirlImgCircle}>
-                <Icon name="heart-o" size={15} style={styles.heartIcon} />
-                <Image
+              <Icon name="heart-o" size={15} style={styles.heartIcon} />
+              <Image
                 source={require('../../../images/Red-OL-removebg.png')}
                 style={styles.exciteImage}
-                />
+              />
             </View>
-            </View>
-            <View style={styles.ratingText}>
+          </View>
+          <View style={styles.ratingText}>
             <Text style={styles.ratingBlue}>Bluebell Hand Block Tiered</Text>
             <Text style={styles.ratingBlue}>Dress</Text>
             <View style={{flexDirection: 'row', marginTop: 5}}>
-                <Text style={styles.ratingBlue}>$80</Text>
-                <Text style={styles.ratingPrice}>$95</Text>
-                <Text style={styles.Qty}>
+              <Text style={styles.ratingBlue}>$80</Text>
+              <Text style={styles.ratingPrice}>$95</Text>
+              <Text style={styles.Qty}>
                 {' '}
-                <AntIcon
-                    name="star"
-                    size={10}
-                    style={{color: '#F8B444', marginTop: 2}}
-                />{' '}
-                (2k Review)
-                </Text>
+                <AntIcon name="star" size={10} style={styles.reviewText} /> (2k
+                Review)
+              </Text>
             </View>
             <View style={{marginTop: 5}}>
-                <Text style={styles.Delivery}>FREE Delivery</Text>
-                <View style={styles.sizeContainer}>
+              <Text style={styles.Delivery}>FREE Delivery</Text>
+              <View style={styles.sizeContainer}>
                 <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="minus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
+                  <Text>
+                    {' '}
+                    <AntIcon name="minus" color="#FFF" size={15} />
+                  </Text>
                 </View>
-                <Text style={{marginLeft:10,marginRight:10,marginTop:5,fontWeight:"bold",color:"#000"}}>1</Text>
+                <Text style={styles.TextOne}>1</Text>
                 <View style={styles.XSizeCircle}>
-                    <Text> <AntIcon
-                    name="plus"
-                    color="#FFF"
-                    size={15}
-                /></Text>
+                  <Text>
+                    {' '}
+                    <AntIcon name="plus" color="#FFF" size={15} />
+                  </Text>
                 </View>
-                <Text style={{marginLeft:40,marginTop:5}}><AntIcon
-                    name="delete"
-                    color="#000"
-                    size={15}
-                />{" "}Remove</Text>
-                </View>
+                <Text style={{marginLeft: 40, marginTop: 5}}>
+                  <AntIcon name="delete" color="#000" size={15} /> Remove
+                </Text>
+              </View>
             </View>
-            </View>
-            
+          </View>
         </View>
         <View style={styles.startLine}></View>
       </ScrollView>
-      <TouchableOpacity
-                  style={styles.getStartedButton}
-                >
-                    <View>
-                      <Text style={styles.getStartedText}>Proceed To Buy (8 Items) </Text>
-                    </View>
-            </TouchableOpacity>
-    
+      <TouchableOpacity style={styles.getStartedButton}>
+        <View>
+          <Text style={styles.getStartedText}>Proceed To Buy (8 Items) </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -319,28 +265,33 @@ const styles = StyleSheet.create({
     padding: 3,
     backgroundColor: '#FEF9F3',
   },
-  input: {
-    height: 40,
-    marginLeft: 15,
-    marginTop: 5,
-    borderWidth: 1,
-    // padding: 10,
-    marginRight: 30,
-    borderRadius: 10,
-    color: 'black',
-    borderColor: '#000',
-    backgroundColor: '#FFFFFF',
+  reviewText: {color: '#F8B444', marginTop: 2},
+  deliverToText: {
+    fontWeight: 'bold',
+    fontSize: 10,
+    marginLeft: 20,
+    color: '#363535',
   },
-  Mycart:{
-    fontWeight: 'bold', 
-    color: '#000'
+  freeOrder: {color: '#2F9E42', fontWeight: '600', marginTop: 5},
+  itemText: {fontWeight: 'bold', fontSize: 10, color: '#000'},
+  Mycart: {
+    fontWeight: 'bold',
+    color: '#000',
   },
+  totalPriceText: {color: '#000', fontWeight: 'bold', fontSize: 17},
+  subTotalText: {color: '#000', fontWeight: '400'},
+  cartText: {fontWeight: 'bold', color: '#000'},
   sizeContainer: {
     flexDirection: 'row',
     marginTop: 5,
-    // justifyContent: "space-around",
   },
-  TextOne:{marginLeft:10,marginRight:10,marginTop:5,fontWeight:"bold",color:"#000"},
+  TextOne: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    fontWeight: 'bold',
+    color: '#000',
+  },
   heartIcon: {
     position: 'absolute',
     top: 10,
@@ -375,14 +326,8 @@ const styles = StyleSheet.create({
     marginLeft: 100,
     marginTop: 20,
   },
-  paragraph: {
-    marginBottom: 10, // Adjust the space between paragraphs
-    // Add additional styles for your paragraph text as needed
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  flexDirectionRow:{
-flexDirection:"row"
+  flexDirectionRow: {
+    flexDirection: 'row',
   },
   ratingPrice: {
     marginLeft: 5,
@@ -394,36 +339,25 @@ flexDirection:"row"
     width: 180,
     height: 125,
   },
-  exciteImage:{
+  exciteImage: {
     width: 60,
     height: 125,
   },
   ratingText: {
     margin: 15,
   },
-  prettyYoungImg:{
+  prettyYoungImg: {
     width: 100,
     height: 125,
-  },
-  inputText: {
-    height: 100,
-    marginLeft: 15,
-    marginTop: 5,
-    borderWidth: 1,
-    marginRight: 30,
-    borderRadius: 10,
-    color: 'black',
-    borderColor: '#000',
-    backgroundColor: '#FFFFFF',
   },
   getStartedButton: {
     // flexDirection: 'row',
     justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: 'black',
     borderRadius: 30,
     paddingVertical: 14,
-    margin:15
+    margin: 15,
   },
   getStartedText: {
     color: 'white',
@@ -432,10 +366,6 @@ flexDirection:"row"
   },
   backIcon: {
     marginLeft: 15,
-    // position: 'absolute',
-    // top: 20,
-    // left: 20,
-    // zIndex: 1,
   },
   startLine: {
     height: 0.5,
@@ -451,11 +381,6 @@ flexDirection:"row"
     alignItems: 'center',
     marginTop: 10,
   },
-  overRating: {
-    justifyContent: 'center',
-    marginTop: 20,
-    alignItems: 'center',
-  },
   Qty: {
     fontSize: 10,
     marginLeft: 30,
@@ -465,16 +390,7 @@ flexDirection:"row"
     color: '#2F9E42',
     fontWeight: '500',
   },
-  off: {
-    color: '#F14337',
-    marginTop: 7,
-    fontWeight: 'bold',
-  },
-  Overall: {
-    fontWeight: 'bold',
-    fontSize: 25,
-    color: '#000',
-  },
+
   categoryImge4Circle: {
     width: 100,
     height: 125,
