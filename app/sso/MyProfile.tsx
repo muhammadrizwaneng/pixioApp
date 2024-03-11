@@ -7,7 +7,7 @@ import LandingPage from './components/LandingPage';
 import FeaturedCategory from './components/FeaturedCategory';
 import SelectionCategory from './components/SelectionCategory';
 
-const MyProfile = ({route, navigation}) => {
+const MyProfile = ({ navigation}) => {
   const selectUserInfo = (state: any) => state?.user;
   const user = useSelector(selectUserInfo);
   console.log("----------------user",user)

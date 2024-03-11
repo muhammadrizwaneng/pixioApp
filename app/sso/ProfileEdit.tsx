@@ -9,7 +9,7 @@ import { login } from '../features/userSlice';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 
-const Signin = ({navigation}) => {
+const ProfileEdit = ({navigation}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   // const [text, onChangeText] = useState('');
   // const [number, onChangeNumber] = useState('');
@@ -81,10 +81,6 @@ const Signin = ({navigation}) => {
                       source={require("../../images/pretty-young.jpeg")}
                       style={styles.flashImage}
                     />
-              </View>
-              <View style={styles.texts}>
-                <Text style={styles.signIn}>Sign In To Your Account</Text>
-                <Text style={styles.welcomeText}>Welcome Back You've Been Missed!</Text>
               </View>
               {/* <SafeAreaView> */}
                 <Text style={styles.passwordText}>Email Address</Text>
@@ -160,7 +156,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FEFAF4",
-    // backgroundColor: "red",
     padding:4
   },
   flashImage: {
@@ -293,4 +288,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Signin;
+export default ProfileEdit;
